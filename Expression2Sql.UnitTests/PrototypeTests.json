@@ -1,0 +1,492 @@
+{
+    "name": "prototypeProject",
+    "nameEn": "prototypeProjectEn",
+    "sources": {
+        "00000000-1001-0000-0000-000000000000": {
+            "sourceType": 1,
+            "tag": "RDL",
+            "nameEn": "RD_learning",
+            "name": "RD_learning",
+            "attributes": {
+                "00000000-1001-1001-0000-000000000000": {
+                    "columnName": "col2640",
+                    "order": 0,
+                    "nameRu": "Номер1",
+                    "name": "Number1",
+                    "nameEn": "Number1",
+                    "type": "integer"
+                },
+                "00000000-1001-1002-0000-000000000000": {
+                    "columnName": "col2641",
+                    "order": 0,
+                    "nameRu": "Наименование комплекта РД1",
+                    "name": "Name1",
+                    "nameEn": "Name1",
+                    "type": "string"
+                },
+                "00000000-1001-1003-0000-000000000000": {
+                    "columnName": "col2642",
+                    "order": 0,
+                    "nameRu": "Код связки ОГ1",
+                    "name": "Code1",
+                    "nameEn": "Code1",
+                    "type": "string"
+                },
+                "00000000-1001-1004-0000-000000000000": {
+                    "columnName": "col2643",
+                    "order": 0,
+                    "nameRu": "Дата выпуска РД (план)1",
+                    "name": "Plan1",
+                    "nameEn": "Plan1",
+                    "type": "date"
+                },
+                "00000000-1001-1005-0000-000000000000": {
+                    "columnName": "col2644",
+                    "order": 0,
+                    "nameRu": "Дата выпуска РД (факт)1",
+                    "name": "Fact1",
+                    "nameEn": "Fact1",
+                    "type": "date"
+                }
+            }
+        },
+        "00000000-1002-0000-0000-000000000000": {
+            "sourceType": 1,
+            "tag": "MTOL",
+            "nameEn": "MTO_learning",
+            "name": "MTO_learning",
+            "attributes": {
+                "00000000-1002-1001-0000-000000000000": {
+                    "columnName": "col2645",
+                    "order": 0,
+                    "nameRu": "Номер",
+                    "name": "Number",
+                    "nameEn": "Number",
+                    "type": "integer"
+                },
+                "00000000-1002-1002-0000-000000000000": {
+                    "columnName": "col2646",
+                    "order": 0,
+                    "nameRu": "Наименование МТО",
+                    "name": "Name Eq",
+                    "nameEn": "Name Eq",
+                    "type": "string"
+                },
+                "00000000-1002-1003-0000-000000000000": {
+                    "columnName": "col2647",
+                    "order": 0,
+                    "nameRu": "Код связки ОГ",
+                    "name": "Code",
+                    "nameEn": "Code",
+                    "type": "string"
+                },
+                "00000000-1002-1004-0000-000000000000": {
+                    "columnName": "col2648",
+                    "order": 0,
+                    "nameRu": "Дата поставки (план)",
+                    "name": "Plan",
+                    "nameEn": "Plan",
+                    "type": "date"
+                },
+                "00000000-1002-1005-0000-000000000000": {
+                    "columnName": "col2649",
+                    "order": 0,
+                    "nameRu": "Дата поставки (факт)",
+                    "name": "Fact",
+                    "nameEn": "Fact",
+                    "type": "date"
+                }
+            }
+        }
+    },
+    "sourcePairs": {
+        "00000000-2001-0000-0000-000000000000": {
+            "name": "RD_MTO",
+            "nameEn": "RD_MTO",
+            "items": {
+                "00000000-2001-1001-0000-000000000000": {
+                    "sourceId": "00000000-1001-0000-0000-000000000000",
+                    "order": 1
+                },
+                "00000000-2001-1002-0000-000000000000": {
+                    "sourceId": "00000000-1002-0000-0000-000000000000",
+                    "order": 2
+                }
+            }
+        }
+    },
+    "indicators": {
+        "00000000-3001-0000-0000-000000000000": {
+            "type": "source",
+            "shape": "circle",
+            "name": "RD_unique",
+            "nameEn": "RD_unique",
+            "suffix": "",
+            "sourceId": "00000000-1001-0000-0000-000000000000",
+            "sourcePairId": null,
+            "groupId": null,
+            "rules": {
+                "00000000-1001-1001-0000-000000000000": {
+                    "name": "серый",
+                    "nameEn": "grey",
+                    "text": "grey",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "col(\"RD.Number1\") >= 30",
+                    "order": 1
+                },
+                "00000000-1001-1002-0000-000000000000": {
+                    "name": "red",
+                    "nameEn": "red",
+                    "text": "red",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "col(\"RD.Number1\") >= 30",
+                    "order": 2
+                }
+            },
+            "groupItems": {}
+        },
+        "00000000-3002-0000-0000-000000000000": {
+            "type": "source",
+            "shape": "circle",
+            "name": "RD unique1",
+            "nameEn": "RD unique 1",
+            "suffix": "",
+            "sourceId": "00000000-1001-0000-0000-000000000000",
+            "sourcePairId": null,
+            "groupId": null,
+            "rules": {
+                "00000000-3002-1001-0000-000000000000": {
+                    "name": "красный",
+                    "nameEn": "red",
+                    "text": "rule1",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "col(\"RD.Number1\") >= 30",
+                    "order": 1
+                },
+                "00000000-3002-1002-0000-000000000000": {
+                    "name": "зеленый",
+                    "nameEn": "yellow",
+                    "text": "yellow",
+                    "colorId": "bcaaac25-af74-464c-9a58-b74ecd797b67",
+                    "expression": "col(\"RD.Number1\") >= 20",
+                    "order": 2
+                }
+            },
+            "groupItems": {}
+        },
+        "00000000-4003-0000-0000-000000000000": {
+            "type": "groupItem",
+            "shape": "circle",
+            "name": "RD group1",
+            "nameEn": "RD group1",
+            "suffix": "",
+            "sourceId": "00000000-1001-0000-0000-000000000000",
+            "sourcePairId": null,
+            "groupId": null,
+            "rules": {
+                "00000000-3002-1001-0000-000000000000": {
+                    "name": "красный",
+                    "nameEn": "red",
+                    "text": "rule1",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "col(\"RDL.Number1\") >= 30",
+                    "order": 1
+                },
+                "00000000-3002-1002-0000-000000000000": {
+                    "name": "зеленый",
+                    "nameEn": "yellow",
+                    "text": "yellow",
+                    "colorId": "bcaaac25-af74-464c-9a58-b74ecd797b67",
+                    "expression": "col(\"RDL.Number1\") >= 20",
+                    "order": 2
+                }
+            },
+            "groupItems": {}
+        },
+        "00000000-3003-0000-0000-000000000000": {
+            "type": "source",
+            "shape": "circle",
+            "name": "yellow",
+            "nameEn": "yellow",
+            "suffix": "",
+            "sourceId": "00000000-1001-0000-0000-000000000000",
+            "sourcePairId": null,
+            "groupId": null,
+            "rules": {
+                "00000000-3003-1001-0000-000000000000": {
+                    "name": "красный",
+                    "nameEn": "red",
+                    "text": "rule1",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "col(\"RD.Number1\") >= 30",
+                    "order": 1
+                },
+                "00000000-3003-1002-0000-000000000000": {
+                    "name": "зеленый",
+                    "nameEn": "yellow",
+                    "text": "yellow",
+                    "colorId": "bcaaac25-af74-464c-9a58-b74ecd797b67",
+                    "expression": "col(\"RD.Number1\") >= 20",
+                    "order": 2
+                }
+            },
+            "groupItems": {}
+        },
+        "00000000-3004-0000-0000-000000000000": {
+            "type": "aggregative",
+            "shape": "circle",
+            "name": "MTO_Aggregative",
+            "nameEn": "MTO_Aggregative",
+            "suffix": "",
+            "sourceId": "00000000-1002-0000-0000-000000000000",
+            "sourcePairId": "00000000-2001-0000-0000-000000000000",
+            "groupId": null,
+            "rules": {
+                "00000000-3004-1001-0000-000000000000": {
+                    "name": "красный",
+                    "nameEn": "red",
+                    "text": "rule1",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "hasIndicator(\"RD_Unique\",\"grey\")",
+                    "order": 1
+                },
+                "00000000-3004-1002-0000-000000000000": {
+                    "name": "зеленый",
+                    "nameEn": "green",
+                    "text": "rule2",
+                    "colorId": "bcaaac25-af74-464c-9a58-b74ecd797b67",
+                    "expression": "hasIndicator(\"RD_Unique\",\"red\")",
+                    "order": 2
+                }
+            },
+            "groupItems": {}
+        },
+        "00000000-3014-0000-0000-000000000000": {
+            "type": "aggregative",
+            "shape": "circle",
+            "name": "RDL_Aggregative",
+            "nameEn": "RDl_Aggregative",
+            "suffix": "",
+            "sourceId": "00000000-1001-0000-0000-000000000000",
+            "sourcePairId": "00000000-2001-0000-0000-000000000000",
+            "groupId": null,
+            "rules": {
+                "00000000-3004-1001-0000-000000000000": {
+                    "name": "красный",
+                    "nameEn": "red",
+                    "text": "rule1",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "col(\"RDL.Plan1\").HasValue && !col(\"RDL.Fact1\").HasValue && col(\"RDL.Plan1\") < val(\"Version_Calculated_Date\")",
+                    "order": 1
+                }
+            },
+            "groupItems": {}
+        },
+        "00000000-3005-0000-0000-000000000000": {
+            "type": "group",
+            "shape": "Квадрат",
+            "name": "поля",
+            "nameEn": "",
+            "suffix": "formula",
+            "sourceId": null,
+            "sourcePairId": null,
+            "groupId": null,
+            "rules": {},
+            "groupItems": {}
+        },
+        "00000000-3006-0000-0000-000000000000": {
+            "type": "source",
+            "shape": "circle",
+            "name": "MTO_unique",
+            "nameEn": "MTO_unique",
+            "suffix": "",
+            "sourceId": "00000000-1002-0000-0000-000000000000",
+            "sourcePairId": null,
+            "groupId": null,
+            "rules": {
+                "00000000-3006-1001-0000-000000000000": {
+                    "name": "серый",
+                    "nameEn": "grey",
+                    "text": "grey",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "true",
+                    "order": 1
+                },
+                "00000000-3006-1002-0000-000000000000": {
+                    "name": "red",
+                    "nameEn": "red",
+                    "text": "red",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "true",
+                    "order": 2
+                }
+            },
+            "groupItems": {}
+        },
+        "00000000-3007-0000-0000-000000000000": {
+            "type": "sourcePair",
+            "shape": "circle",
+            "name": "PairIndicator1",
+            "nameEn": "PairIndicator1",
+            "suffix": "",
+            "sourceId": null,
+            "sourcePairId": "00000000-2001-0000-0000-000000000000",
+            "groupId": null,
+            "rules": {
+                "00000000-3007-1001-0000-000000000000": {
+                    "name": "серый",
+                    "nameEn": "grey",
+                    "text": "grey",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "true",
+                    "order": 1
+                },
+                "00000000-3007-1002-0000-000000000000": {
+                    "name": "red",
+                    "nameEn": "red",
+                    "text": "red",
+                    "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+                    "expression": "true",
+                    "order": 2
+                }
+            },
+            "groupItems": {}
+        }
+
+    },
+    "userFields": {
+        "00000000-4001-0000-0000-000000000000": {
+            //на RD, данные из MTO
+            "nameEn": "at-mto",
+            "name": "RD user field 1",
+            "columnName": "fld4001",
+            "createdAt": "2020-10-27T14:38:34+03:00",
+            "filter": "fdfdf",
+            "expression": "fdfdfdfdfdfd",
+            "modifiedAt": "2020-10-27T14:38:34+03:00",
+            "continueWithZero": false,
+            "sourceId": "00000000-1001-0000-0000-000000000000",
+            "sourcePairId": "00000000-2001-0000-0000-000000000000",
+            "type": "string"
+        },
+        "00000000-4002-0000-0000-000000000000": {
+            //на MTO, данные из RD
+            "nameEn": "at-mto",
+            "name": "MTO user field 1",
+            "columnName": "fld4002",
+            "createdAt": "2020-10-27T14:38:34+03:00",
+            "filter": "fdfdf",
+            "expression": "fdfdfdfdfdfd",
+            "modifiedAt": "2020-10-27T14:38:34+03:00",
+            "continueWithZero": true,
+            "sourceId": "00000000-1002-0000-0000-000000000000",
+            "sourcePairId": "00000000-2001-0000-0000-000000000000",
+            "type": "string"
+        }
+    },
+    "versions": {
+        "00000000-5001-0000-0000-000000000000": {
+            "number": 1,
+            "name": "Проект 'serg-190231', версия 1",
+            "sourceCollisions": "_0862b7ab73434b6f83ab4efa73920847_1_single_collisions",
+            "sourcePairCollisions": "_0862b7ab73434b6f83ab4efa73920847_1_pair_collisions",
+            "sourcePairConnections": "_0862b7ab73434b6f83ab4efa73920847_1_pair_connections",
+            "createdAt": "2020-10-14T19:03:35+03:00",
+            "userId": "0c70ee8d-2c37-479d-8c2d-6da035cfbcd4",
+            "calculatedAt": "2020-08-14T19:03:35+03:00",
+            "aggregations": "_0862b7ab73434b6f83ab4efa73920847_1_aggregations",
+            "completionState": 0,
+            "calculateOperationId": "fafb3836-6b6c-4f0f-beb8-dbe786c63f09",
+            "schedules": {
+                "00000000-5001-1001-0000-000000000000": {
+                    "recordsCount": 42,
+                    "tableName": "_0862b7ab73434b6f83ab4efa73920847_rd_1",
+                    "sourceId": "00000000-1001-0000-0000-000000000000",
+                    "actualAt": "2021-01-25T11:16:42+03:00"
+                },
+                "00000000-5001-1002-0000-000000000000": {
+                    "recordsCount": 24,
+                    "tableName": "_0862b7ab73434b6f83ab4efa73920847_mto_1",
+                    "sourceId": "00000000-1002-0000-0000-000000000000"
+                }
+            }
+        }
+    },
+    "parameters": {
+        "00000000-6001-0000-0000-000000000000": {
+            "name": "Integer Constant 1",
+            "nameEn": "int const 1",
+            "tag": "ic1",
+            "type": "integer",
+            "value": "500"
+        }
+    },
+    "reportTemplates": {
+        "00000000-7001-0000-0000-000000000000": {
+            "name": "RD_Template1",
+            "nameEn": "RD_Template1_En",
+            "useGrouping": false,
+            "useAggregationMode": false,
+            "includeUnjoined": false,
+            "comments": "",
+            "userName": "smirnov",
+            "createdAt": "2020-10-14T19:05:26+03:00",
+            "projectId": "0862b7ab-7343-4b6f-83ab-4efa73920847",
+            "sourcePairId": null,
+            "sourceId": "00000000-1001-0000-0000-000000000000",
+            "columns": {
+                "00000000-3001-0000-0000-000000000000": {
+                    "order": 0
+                },
+                "00000000-1001-1001-0000-000000000000": {
+                    "order": 1
+                },
+                "00000000-1001-1002-0000-000000000000": {
+                    "order": 2
+                },
+                "00000000-1001-1003-0000-000000000000": {
+                    "order": 3
+                },
+                "00000000-1001-1004-0000-000000000000": {
+                    "order": 4
+                },
+                "00000000-1001-1005-0000-000000000000": {
+                    "order": 5
+                }
+            }
+        },
+        "00000000-7002-0000-0000-000000000000": {
+            "name": "MTO_Template1",
+            "nameEn": "MTO_Template1_En",
+            "useGrouping": false,
+            "useAggregationMode": false,
+            "includeUnjoined": false,
+            "comments": "",
+            "userName": "smirnov",
+            "createdAt": "2020-10-14T19:05:40+03:00",
+            "projectId": "0862b7ab-7343-4b6f-83ab-4efa73920847",
+            "sourcePairId": null,
+            "sourceId": "00000000-1002-0000-0000-000000000000",
+            "columns": {
+                "00000000-3004-0000-0000-000000000000": {
+                    "order": 0
+                },
+                "00000000-1002-1001-0000-000000000000": {
+                    "order": 1
+                },
+                "00000000-1002-1002-0000-000000000000": {
+                    "order": 2
+                },
+                "00000000-1002-1003-0000-000000000000": {
+                    "order": 3
+                },
+                "00000000-1002-1004-0000-000000000000": {
+                    "order": 4
+                },
+                "00000000-1002-1005-0000-000000000000": {
+                    "order": 5
+                }
+            }
+        }
+    }
+}

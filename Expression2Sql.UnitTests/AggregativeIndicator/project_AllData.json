@@ -1,0 +1,328 @@
+{
+  "name": "allData",
+  "nameEn": "allDataEn",
+  "sources": {
+    "5e41953e-6460-4660-b4a9-a3cc21b36d46": {
+      "sourceType": 1,
+      "tag": "RDL",
+      "nameEn": "RD_learning",
+      "name": "RD_learning",
+      "attributes": {
+        "b047635c-f045-4dbe-999f-2e7d3948839f": {
+          "columnName": "col2640",
+          "order": 0,
+          "nameRu": "Номер1",
+          "name": "Number1",
+          "nameEn": "Number1",
+          "type": "integer"
+        },
+        "f7c60c81-dd8e-4ff3-98a0-2bea7c7181cf": {
+          "columnName": "col2641",
+          "order": 0,
+          "nameRu": "Наименование комплекта РД1",
+          "name": "Name1",
+          "nameEn": "Name1",
+          "type": "string"
+        },
+        "f632a6c3-7895-4eb4-a541-ca639331d594": {
+          "columnName": "col2642",
+          "order": 0,
+          "nameRu": "Код связки ОГ1",
+          "name": "Code1",
+          "nameEn": "Code1",
+          "type": "string"
+        },
+        "e83b0ac8-99e4-4e46-915f-d5fa68401938": {
+          "columnName": "col2643",
+          "order": 0,
+          "nameRu": "Дата выпуска РД (план)1",
+          "name": "Plan1",
+          "nameEn": "Plan1",
+          "type": "date"
+        },
+        "b11d7368-4369-4658-b541-c08680dd5f07": {
+          "columnName": "col2644",
+          "order": 0,
+          "nameRu": "Дата выпуска РД (факт)1",
+          "name": "Fact1",
+          "nameEn": "Fact1",
+          "type": "date"
+        }
+      }
+    },
+    "dcec0be4-7f93-429f-aa91-325cb4761a2a": {
+      "sourceType": 1,
+      "tag": "MTO_L",
+      "nameEn": "MTO_learning",
+      "name": "MTO_learning",
+      "attributes": {
+        "0d17817e-4799-407c-96c4-31880a761c55": {
+          "columnName": "col2645",
+          "order": 0,
+          "nameRu": "Номер",
+          "name": "Number",
+          "nameEn": "Number",
+          "type": "integer"
+        },
+        "4655b9cc-81ea-4581-8ef5-abf53bdc8630": {
+          "columnName": "col2646",
+          "order": 0,
+          "nameRu": "Наименование МТО",
+          "name": "Name Eq",
+          "nameEn": "Name Eq",
+          "type": "string"
+        },
+        "08801191-106e-495f-9d7f-dfa20cc58448": {
+          "columnName": "col2647",
+          "order": 0,
+          "nameRu": "Код связки ОГ",
+          "name": "Code",
+          "nameEn": "Code",
+          "type": "string"
+        },
+        "51217512-9a3f-4db8-aa4b-d91ebe477cdf": {
+          "columnName": "col2648",
+          "order": 0,
+          "nameRu": "Дата поставки (план)",
+          "name": "Plan",
+          "nameEn": "Plan",
+          "type": "date"
+        },
+        "346e897f-3d65-4063-8744-972e7fcda9cf": {
+          "columnName": "col2649",
+          "order": 0,
+          "nameRu": "Дата поставки (факт)",
+          "name": "Fact",
+          "nameEn": "Fact",
+          "type": "date"
+        }
+      }
+    }
+  },
+  "sourcePairs": {
+    "c05b4147-2dfb-4fad-bba5-71ff5a8dc0f3": {
+      "name": "RD_MTO",
+      "nameEn": "RD_MTO",
+      "items": {
+        "d3aad0c0-a9c6-4382-abd9-fb8ce6d26d5f": {
+          "sourceId": "5e41953e-6460-4660-b4a9-a3cc21b36d46",
+          "order": 1
+        },
+        "2f81da81-d516-4b10-8c8e-7d75a0134cfe": {
+          "sourceId": "dcec0be4-7f93-429f-aa91-325cb4761a2a",
+          "order": 2
+        }
+      }
+    },
+    "c05b4147-2dfb-0000-0000-71ff5a8dc0f3": {
+      "name": "RD_MTO",
+      "nameEn": "Пара для облома всего",
+      "items": {
+        "d3aad0c0-a9c6-4382-abd9-fb8ce6d26d50": {
+          "sourceId": "5e41953e-6460-4660-b4a9-a3cc21b36d46",
+          "order": 1
+        },
+        "2f81da81-d516-4b10-8c8e-7d75a0134cf0": {
+          "sourceId": "dcec0be4-7f93-429f-aa91-325cb4761a2a",
+          "order": 2
+        }
+      }
+    }
+  },
+  "indicators": {
+    "8ee978de-5032-41b6-bc28-e8a7655e1b98": {
+      "type": "source",
+      "shape": "circle",
+      "name": "RD_unique",
+      "nameEn": "RD_unique",
+      "suffix": "",
+      "sourceId": "5e41953e-6460-4660-b4a9-a3cc21b36d46",
+      "sourcePairId": null,
+      "groupId": null,
+      "rules": {
+        "e170735b-1a9f-480f-b687-b8f510271a16": {
+          "name": "серый",
+          "nameEn": "grey",
+          "text": "grey",
+          "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+          "expression": "col(\"RD.Number1\") >= 30",
+          "order": 1
+        },
+        "e170735b-1a9f-480f-b687-b8f510271a17": {
+          "name": "red",
+          "nameEn": "red",
+          "text": "red",
+          "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+          "expression": "col(\"RD.Number1\") >= 30",
+          "order": 2
+        }
+      },
+      "groupItems": {}
+    },
+    "1ee978de-5032-41b6-bc28-e8a7655e1b98": {
+      "type": "source",
+      "shape": "circle",
+      "name": "Инд. ПСД",
+      "suffix": "",
+      "sourceId": "5e41953e-6460-4660-b4a9-a3cc21b36d46",
+      "sourcePairId": null,
+      "groupId": null,
+      "rules": {
+        "1170735b-1a9f-480f-b687-b8f510271a17": {
+          "name": "Серый",
+          "nameEn": "Серый",
+          "text": "Серый",
+          "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+          "expression": "col(\"RD.Number1\") >= 30",
+          "order": 2
+        }
+      },
+      "groupItems": {}
+    },
+    "8ee978de-5032-41b6-bc28-e8a7655e1b99": {
+      "type": "source",
+      "shape": "circle",
+      "name": "RD unique1",
+      "nameEn": "RD unique 1",
+      "suffix": "",
+      "sourceId": "5e41953e-6460-4660-b4a9-a3cc21b36d46",
+      "sourcePairId": null,
+      "groupId": null,
+      "rules": {
+        "e170735b-1a9f-480f-b687-b8f510271a17": {
+          "name": "красный",
+          "nameEn": "red",
+          "text": "rule1",
+          "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+          "expression": "col(\"RD.Number1\") >= 30",
+          "order": 1
+        },
+        "6a085435-42f0-4bdb-9ed3-ec09cce21960": {
+          "name": "зеленый",
+          "nameEn": "yellow",
+          "text": "yellow",
+          "colorId": "bcaaac25-af74-464c-9a58-b74ecd797b67",
+          "expression": "col(\"RD.Number1\") >= 20",
+          "order": 2
+        }
+      },
+      "groupItems": {}
+    },
+    "00000000-0000-0000-0000-000001003000": {
+      "type": "source",
+      "shape": "circle",
+      "name": "yellow",
+      "nameEn": "yellow",
+      "suffix": "",
+      "sourceId": "5e41953e-6460-4660-b4a9-a3cc21b36d46",
+      "sourcePairId": null,
+      "groupId": null,
+      "rules": {
+        "00000000-0000-0000-0000-000001003001": {
+          "name": "красный",
+          "nameEn": "red",
+          "text": "rule1",
+          "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+          "expression": "col(\"RD.Number1\") >= 30",
+          "order": 1
+        },
+        "00000000-0000-0000-0000-000001003002": {
+          "name": "зеленый",
+          "nameEn": "yellow",
+          "text": "yellow",
+          "colorId": "bcaaac25-af74-464c-9a58-b74ecd797b67",
+          "expression": "col(\"RD.Number1\") >= 20",
+          "order": 2
+        }
+      },
+      "groupItems": {}
+    },
+    "216b5975-6b86-4ce2-803d-eb022eccd2c1": {
+      "type": "aggregative",
+      "shape": "circle",
+      "name": "MTO_Aggregative",
+      "nameEn": "MTO_Aggregative",
+      "suffix": "",
+      "sourceId": "dcec0be4-7f93-429f-aa91-325cb4761a2a",
+      "sourcePairId": "c05b4147-2dfb-4fad-bba5-71ff5a8dc0f3",
+      "groupId": null,
+      "rules": {
+        "64127ac4-7528-424e-897b-a48bc81cd744": {
+          "name": "красный",
+          "nameEn": "red",
+          "text": "rule1",
+          "colorId": "3b75187a-cc6a-4b87-bb0c-ede9240ea06c",
+          "expression": "hasIndicator(\"RD_Unique\",\"rule1\")",
+          "order": 1
+        },
+        "65c6e25e-9131-45c6-b8bd-3501660aa08a": {
+          "name": "зеленый",
+          "nameEn": "green",
+          "text": "rule2",
+          "colorId": "bcaaac25-af74-464c-9a58-b74ecd797b67",
+          "expression": "hasIndicator(\"Инд. ПСД\",\"Серый\")",
+          "order": 2
+        }
+      },
+      "groupItems": {}
+    },
+    "c9bc53eb-b77a-4a41-b62e-ee92fccaece5": {
+      "type": "group",
+      "shape": "Квадрат",
+      "name": "поля",
+      "nameEn": "",
+      "suffix": "formula",
+      "sourceId": null,
+      "sourcePairId": null,
+      "groupId": null,
+      "rules": {},
+      "groupItems": {}
+    }
+  },
+  "UserFields": {
+    "00000000-0000-0000-0000-000000000001": {
+      "Name": "UserField_mto",
+      "SourceId": "dcec0be4-7f93-429f-aa91-325cb4761a2a",
+      "Type": "Integer"
+    }
+  },
+  "versions": {
+    "58eade73-4fc9-424a-a82c-9e4c3408db4a": {
+        "number": 1,
+        "name": "Проект 'allData', версия 1",
+        "sourceCollisions": "_0862b7ab73434b6f83ab4efa73920847_1_single_collisions",
+        "sourcePairCollisions": "_0862b7ab73434b6f83ab4efa73920847_1_pair_collisions",
+        "sourcePairConnections": "_0862b7ab73434b6f83ab4efa73920847_1_pair_connections",
+        "createdAt": "2020-10-14T19:03:35+03:00",
+        "userId": "0c70ee8d-2c37-479d-8c2d-6da035cfbcd4",
+        "calculatedAt": "2020-08-14T19:03:35+03:00",
+        "aggregations": "_0862b7ab73434b6f83ab4efa73920847_1_aggregations",
+        "completionState": 0,
+        "calculateOperationId": "fafb3836-6b6c-4f0f-beb8-dbe786c63f09",
+        "schedules": {
+            "4a89855d-b435-41c1-b382-7b07f44a390f": {
+                "recordsCount": 42,
+                "actualAt": "2020-10-14T19:03:35+03:00",
+                "tableName": "_0862b7ab73434b6f83ab4efa73920847_rd_1",
+                "sourceId": "5e41953e-6460-4660-b4a9-a3cc21b36d46"
+            },
+            "12941b97-3cbd-41dd-bdad-5f03f9b78ffe": {
+                "recordsCount": 24,
+                "actualAt": "2020-10-13T19:03:35+03:00",
+                "tableName": "_0862b7ab73434b6f83ab4efa73920847_mto_1",
+                "sourceId": "dcec0be4-7f93-429f-aa91-325cb4761a2a"
+            }
+        }
+    }
+  },
+  "parameters": {
+    "77f0a1d7-42e2-4704-8cc7-15d005d38ede": {
+      "name": "Integer Constant 1",
+      "nameEn": "int const 1",
+      "tag": "ic1",
+      "type": "integer",
+      "value": "500"
+    }
+  }
+  
+}
