@@ -41,9 +41,68 @@ Lambda выражения компилируются и средствами Ent
 
 9. Задаём выражение в виде и компилируем.
 
+public static Expression CSharpScriptEvaluate(Type typeWrapper, string expressionName = "expr")
+{
+    var exprField = typeWrapper.GetField(expressionName, BindingFlags.Public | BindingFlags.Instance);
+    var main = Activator.CreateInstance(typeWrapper);
+
+    var expressionBoxed = exprField.GetValue(main) as LambdaExpression;
+
+    var expressionUnboxed = Unbox(expressionBoxed.Body);
+
+    var sInstance = (IS)Activator.CreateInstance(typeof(S<,>).MakeGenericType(typeof(TMain), expressionUnboxed.Type));
+    return sInstance.Create(expressionUnboxed, expressionBoxed.Parameters[0]);
+    //return Expression.Lambda<Func<TMain>> (expressionUnboxed, expressionBoxed.Parameters[0]);
+}
+
+ Assembly? CompileAssembly(string codeToCompile, string assemblyName)
+    {
+        var parseOptions = CSharpParseOptions.Default.WithLanguageVersion(LanguageVersion.CSharp8);
+        var parsedSyntaxTree = SyntaxFactory.ParseSyntaxTree(codeToCompile, parseOptions);
+
+        var compilationOptions = new CSharpCompilationOptions(OutputKind.DynamicallyLinkedLibrary)
+            .WithOverflowChecks(false)
+            .WithOptimizationLevel(OptimizationLevel.Release);
+
+        var references = GetReferences();
+
+        var compilation = CSharpCompilation.Create(assemblyName, new[] {parsedSyntaxTree}, references, compilationOptions);
+
+        using var ms = new MemoryStream();
+
+        var result = compilation.Emit(ms);
+        if (!result.Success)
+        {
+            Errors.AddRange(result.Diagnostics.Where(x => x.Severity == DiagnosticSeverity.Error).Select(x => x.ToString()).ToList());
+
+            return default;
+        }
+
+        ms.Seek(0, SeekOrigin.Begin);
+        var assembly = _assemblyLoadContext.Value.LoadFromStream(ms);
+
+        ExpressionWrapperType = assembly.GetType($"{assemblyName}.{ExpressionWrapper}");
+        FilterWrapperType = assembly.GetType($"{assemblyName}.{FilterWrapper}");
+
+        return assembly;
+    }
+
 10. Как будут выглядеть ошибки? Вот так. Как можно отладить? Например так. Можно вставить заменённый код прямо в проект. Что неудобно. А что ещё? Ещё можно использовать сорсгенерацию
 
 11. Загружение сборку в память
+
+Type type = assembly.GetTypes().FirstOrDefault(x => x.IsSubclassOf(typeof(FactoryBase)));
+expressionScope._factoryBase = (FactoryBase) Activator.CreateInstance(type);
+
+const string? fakeConnectionString = "Host=_;Database=_;Username=_;Password=_);";
+var options = new DbContextOptionsBuilder()
+    .UseNpgsql(fakeConnectionString)
+    .Options;
+
+var dbContextClassName = CodeGenerator.GetDbContextClassName(_dataManager.TheVersion);
+var type = Factory.GetType();
+Type dbContextType = type.Assembly.GetType($"{type.Namespace}.{dbContextClassName}");
+Ctx = (DbContext) Activator.CreateInstance(dbContextType, (object) options);
 
 12. Теперь попробуем получить SQL. Для этого нужно пересобрать выражение
 
