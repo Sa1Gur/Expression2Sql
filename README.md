@@ -117,3 +117,56 @@ Ctx = (DbContext) Activator.CreateInstance(dbContextType, (object) options);
 17. Теперь у нас есть SQL и думаем как его тестировать. Например, можно использовать сравнением строк. Чем плохо? Очень зависит от изменений в EF
 
 18. Можно тестировать сразу на данных. Хорошо т.к. не завсит от изменений EF, но получается не чистый модульный тест. "Про то, как эффективно протестировать, можно узнать в другом докладе".
+
+19. Утечки
+
+20.
+https://github.com/dotnet/roslyn/issues/41722
+
+Every CSharpScript.EvaluateAsync() call generates a new assembly that does not get unloaded #41722
+ Open
+zeroskyx opened this issue on Feb 15, 2020 · 13 comments
+ Open
+Every CSharpScript.EvaluateAsync() call generates a new assembly that does not get unloaded
+#41722
+zeroskyx opened this issue on Feb 15, 2020 · 13 comments
+Comments
+@zeroskyx
+zeroskyx commented on Feb 15, 2020
+Using the following code:
+
+while(true)
+{
+	await Microsoft.CodeAnalysis.CSharp.Scripting.CSharpScript.EvaluateAsync("4 + 8");
+	System.Console.WriteLine($"Loaded assemblies: {System AppDomain.CurrentDomain.GetAssemblies().Count()}");
+}
+Output:
+
+Loaded assemblies: 49
+Loaded assemblies: 50
+Loaded assemblies: 51
+Loaded assemblies: 52
+Loaded assemblies: 53
+Loaded assemblies: 54
+...
+The scripting API generates a new assembly for every call that does not get unloaded, resulting in an ever-increasing number of loaded assemblies and thus in an increasing amount of memory consumption.
+
+There does not appear to be a way to unload the generated assemblies since they are not collectible (How to use and debug assembly unloadability in .NET Core).
+
+How can we unload these generated assemblies?
+
+21. https://github.com/dotnet/roslyn/issues/22219
+Version Used: 2.3.0.0
+
+I have an application that creates and pre-compiles a number of scripts.
+For me though, it seems that ~39 scripts is the limit where compilation will fail with an OOM exception.
+
+var script = CSharpScript.Create(text, scriptOptions);
+script.Compile();
+My scriptOptions contains 1 assembly reference and 2 imports.
+Each script compilation consumes roughly over 50mb.
+
+Releasing the references to these scripts allows the gc to free up memory and not get an OOM ex meaning each script reference seems to consume roughly the same amount of memory as the entire main application without scripts. This seems slightly excessive.
+
+I will help with any details needed. All help is welcome.
+
