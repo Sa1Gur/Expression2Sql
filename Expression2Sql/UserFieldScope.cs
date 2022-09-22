@@ -65,7 +65,9 @@ public sealed class UserFieldScope
         where TMain : RecordBase
     {
         var ctx = _expressionScope.Ctx;
-        var query = ctx.Set<TMain>().Select(_factory.ReplaceSurrogates(expression, ctx).SelectResult().NormalizeConstants());
+        var query = ctx.Set<TMain>().Select(_factory.ReplaceSurrogates(expression, ctx)
+            .SelectResult());
+            //.NormalizeConstants());
 
         var sql = query
             .Where(_ => ctx.Set<UnknownTableRecord>().Any(y => y.Id == y.Id))
