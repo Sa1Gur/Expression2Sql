@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using QueryingCore.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.CodeAnalysis.Scripting;
 using RestApi.Data.Models;
 
 namespace QueryingCore;
@@ -66,8 +64,8 @@ public sealed class UserFieldScope
     {
         var ctx = _expressionScope.Ctx;
         var query = ctx.Set<TMain>().Select(_factory.ReplaceSurrogates(expression, ctx)
-            .SelectResult());
-            //.NormalizeConstants());
+            .SelectResult()
+            .NormalizeConstants());
 
         var sql = query
             .Where(_ => ctx.Set<UnknownTableRecord>().Any(y => y.Id == y.Id))
